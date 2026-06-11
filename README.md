@@ -1,34 +1,22 @@
-# Proyecto 2 - Streaming de eventos con Kinesis Firehose + análisis inteligente
+# Pipeline de Datos AWS Serverless - Caso Cafetería ☕
 
-Este repositorio contiene los avances, scripts y documentación del proyecto final enfocado en capturar eventos digitales, almacenarlos de forma segura en la nube y generar un análisis breve de lo ocurrido en una ventana de tiempo utilizando inteligencia artificial.
+Este repositorio contiene el MVP (Producto Mínimo Viable) para la captura, procesamiento y análisis inteligente de eventos transaccionales en tiempo real utilizando una arquitectura 100% Serverless en Amazon Web Services (AWS).
 
-## 🎯 Objetivo del MVP
-Simular eventos en tiempo casi real, enviarlos a Kinesis Firehose, almacenarlos en S3, catalogarlos para consulta con Athena y usar Bedrock para explicar los patrones observados.
+## 👥 Integrantes
+* Cruces Isla, Junior Sayet
+* Cervantes Castillon, Diego Francisco
 
----
+## 🏗️ Arquitectura del Sistema
+El flujo de datos se divide en 4 capas elásticas:
+1. **Ingestión (Capa Bronze):** Simulación de interacciones de usuarios mediante un script de Python, almacenando los archivos crudos en formato **JSON Lines** en un bucket de **Amazon S3**.
+2. **Catalogación (Capa Silver):** Uso de **AWS Glue Crawler** para mapear la estructura de forma automática en el Data Catalog.
+3. **Analítica (Capa Gold):** Consultas SQL interactivas sobre el Data Lake utilizando **Amazon Athena**.
+4. **Capa de Inteligencia:** Conexión de métricas con **Amazon Bedrock** (Modelo Nova 2 Lite) para la generación automatizada de reportes ejecutivos.
 
-## 🚀 Estado Actual del Despliegue
+## 📊 Hallazgo Técnico Crítico
+Tras la agregación analítica de los eventos en Athena, se detectó una anomalía severa en el rendimiento por canales de acceso:
+* **Mobile (Celulares):** 151.6 ms (Fluido)
+* **Desktop (Computadoras):** 197.5 ms (Fluido)
+* **Tablets (Tabletas):** **685.0 ms (Crítico - Latencia alta)**
 
-La base de la infraestructura cloud ha sido desplegada colaborativamente en **AWS (Amazon Web Services)** mediante una cuenta con roles administradores (IAM).
-
-### 1. Capa de Almacenamiento (S3 Raw / Bronze)
-* **Servicio:** Amazon S3
-* **Bucket Principal:** `ventas-cafeteria-raw-diego`
-* **Región:** EE.UU. Este (Norte de Virginia) `us-east-1`
-* **Estructura de Directorios:** Prefijo `/ingest-data/` creado con éxito para recibir los objetos JSON del simulador.
-
-### 2. Capa de Ingesta (Streaming con Kinesis Firehose)
-* **Estado:** En proceso de activación técnica (Esperando liberación de seguridad por parte de AWS para cuentas nuevas).
-
----
-
-## 📐 Arquitectura del Pipeline (Sugerida)
-`Simulador Python -> Kinesis Firehose -> S3 Raw -> Glue Crawler/Catalog -> Athena -> Resultado agregado -> Bedrock -> Resumen de eventos`
-
-## 📊 Especificaciones del Dataset Sugerido
-Los eventos artificiales serán estructurados en formato JSON con los siguientes campos requeridos:
-* `event_id`, `event_time`, `user_id`, `event_type`, `product_id`, `device`, `status`, `latency_ms`.
-
-## 👥 Integrantes del Equipo
-* Junior Sayet Cruces Isla
-* Diego Francisco Cervantes Castillon
+*Impacto de negocio:* El canal de Tablets representa un riesgo inminente de abandono de carrito de compras debido a problemas de renderizado o diseño responsivo.
