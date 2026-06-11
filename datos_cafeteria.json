@@ -1,0 +1,7 @@
+{"event_id": "843219", "event_time": "2026-06-11 05:10:22", "user_id": "USER_412", "event_type": "purchase", "product_id": "PROD_001", "device": "mobile", "status": "200", "latency_ms": 120}
+{"event_id": "194823", "event_time": "2026-06-11 05:11:01", "user_id": "USER_785", "event_type": "click", "product_id": "PROD_003", "device": "desktop", "status": "200", "latency_ms": 85}
+{"event_id": "552194", "event_time": "2026-06-11 05:12:15", "user_id": "USER_112", "event_type": "navigation_error", "product_id": "PROD_002", "device": "tablet", "status": "500", "latency_ms": 950}
+{"event_id": "304918", "event_time": "2026-06-11 05:13:40", "user_id": "USER_904", "event_type": "view_product", "product_id": "PROD_004", "device": "mobile", "status": "200", "latency_ms": 145}
+{"event_id": "771239", "event_time": "2026-06-11 05:15:02", "user_id": "USER_336", "event_type": "purchase", "product_id": "PROD_001", "device": "desktop", "status": "200", "latency_ms": 310}
+{"event_id": "452139", "event_time": "2026-06-11 05:16:12", "user_id": "USER_154", "event_type": "purchase", "product_id": "PROD_002", "device": "mobile", "status": "200", "latency_ms": 190}
+{"event_id": "993214", "event_time": "2026-06-11 05:17:45", "user_id": "USER_621", "event_type": "click", "product_id": "PROD_001", "device": "tablet", "status": "404", "latency_ms": 420}
